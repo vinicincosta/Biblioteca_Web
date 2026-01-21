@@ -1,0 +1,38 @@
+{% extends 'base_login.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block main %}
+<form class="form" action="{{ url_for('login') }}" method="POST">
+
+    <h2 class="text-center mb-3">Login</h2>
+    <p class="text-center text-muted">Entre com seu email e senha</p>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+            name="email"
+            class="form-control"
+            type="email"
+            placeholder="Digite seu email"
+            required
+        >
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input
+            name="senha"
+            class="form-control"
+            type="password"
+            placeholder="Digite sua senha"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+        Entrar
+    </button>
+
+</form>
+{% endblock %}

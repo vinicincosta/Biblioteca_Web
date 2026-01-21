@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h2 class="page-title">Histórico</h2>
+
+
+<div class="card-list">
+    {% for item in usuarios_emp.historico_emprestimos %}
+
+    <p><strong> Livro Emprestado:</strong> {{item.livro_emprestado_id }}</p>
+    <p><strong> Data de Empréstimo:</strong> {{ item.data_de_emprestimo }}</p>
+    <p><strong> Data de Devolução:</strong> {{item.data_de_devolucao }}</p>
+    <p><strong> Status: </strong> {{ item.status }}</p>
+    <hr>
+
+    {% endfor %}
+</div>
+{% endblock %}

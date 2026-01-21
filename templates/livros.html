@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="page-header">
+    <h2 class="page-title">Livros</h2>
+    <div class="cad-livro">
+        <a href="{{url_for('cadastrar_livro')}}">
+            <button class="submit">Cadastrar Livros</button>
+        </a>
+
+        <a class="btn-acao secundario"
+           href="{{ url_for('livros_disponiveis') }}">
+            Livros disponíveis
+        </a>
+
+        <a class="btn-acao secundario"
+           href="{{ url_for('livros_emprestados') }}">
+            Livros emprestados
+        </a>
+    </div>
+</div>
+
+
+<div class="card-list">
+    {% for item in livros.lista_livro %}
+
+    <p><strong>Titulo:</strong> {{item.titulo}}</p>
+    <p><strong>Autor:</strong> {{item.autor}} </p>
+    <p><strong> ISBN:</strong> {{item.ISBN}}</p>
+    <p><strong>Resumo:</strong> {{item.resumo}}</p>
+
+    <p><strong>Conteúdo</strong>: {{item.leitura}}</p>
+    <div class="acoes-livros">
+
+        <a class="btn-acao editar"
+           href="{{ url_for('editar_livro', id_livro=item.id_livro) }}">
+            Editar Livro
+        </a>
+
+        <form action="{{ url_for('deletar_livro', id_livro=item.id_livro) }}"
+              method="POST"
+              style="display:inline;">
+            <button type="submit" class="btn-acao secundario_delete"
+                    onclick="return confirm('Tem certeza que deseja deletar este livro?')">
+                DELETAR LIVRO
+            </button>
+        </form>
+
+
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

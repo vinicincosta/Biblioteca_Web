@@ -1,0 +1,421 @@
+/* RESET BÁSICO */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+html, body {
+    height: 100%;
+    background-color: #f4f3ee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2f2f2f;
+}
+/* HEADER */
+header {
+    background: transparent;
+
+}
+
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #111111, #1c1c1c);
+}
+
+
+
+/* =========================
+   NAV LATERAL
+========================= */
+nav {
+    width: 220px;
+    min-height: 100vh;
+    padding-top: 40px;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+}
+
+nav a {
+    display: block;
+    padding: 14px 20px;
+    color: #e5e5e5;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    padding-left: 30px;
+}
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+main {
+    flex: 1;
+    padding: 30px;
+    background: transparent;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+p {
+    color: #333333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+h1, h2, h3 {
+    color: #1e1e1e;
+}
+
+/* =========================
+   FLASH MESSAGES
+========================= */
+.flashes {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.flashes li {
+    font-size: 0.95em;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.flashes .error {
+    color: #7a0b0b;
+    background-color: #ffe3e3;
+    border-left: 6px solid #d80000;
+}
+
+.flashes .success {
+    color: #0f5d0f;
+    background-color: #e4ffe4;
+    border-left: 6px solid #2ecc71;
+}
+
+/* =========================
+   FORMULÁRIOS
+========================= */
+.form {
+    width: 320px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.form h2 {
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.form p {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* LABEL */
+label {
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+}
+
+/* INPUT */
+.inputt {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputt:focus {
+    outline: none;
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 3px rgba(46,204,113,0.2);
+}
+
+/* =========================
+   BOTÕES
+========================= */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2ecc71;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   LISTAS (ex: usuários, livros)
+========================= */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s ease;
+}
+
+ul li:hover {
+    background-color: #f7f7f7;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        min-height: auto;
+    }
+}
+
+/*  Contenier fazio na main em base.html*/
+.content-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    min-height: calc(100vh - 80px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Modelo do botão cadastrar livro em livros.html*/
+.cad-livro {
+    display: flex;
+    justify-content: flex-end; /* joga o botão para a direita */
+    margin-bottom: 20px;
+    gap: 12px; /* espaço entre os botões */
+}
+
+/* Tamanho do botão */
+.cad-livro .submit {
+    width: 180px;              /* tamanho médio */
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+
+/* alinha titulo e botão na mesma linha*/
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acoes-livros {
+    display: flex;
+    gap: 12px;                 /* espaço entre botões */
+    justify-content: flex-start; /* esquerda */
+    margin-bottom: 20px;
+}
+
+.btn-acao {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+    min-width: 160px;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    border-radius: 6px;
+    color: #ffffff;
+    background-color: #2563eb; /* azul padrão */
+
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-acao:hover {
+    background-color: #1e40af;
+    transform: translateY(-1px);
+}
+
+/* Botão principal */
+.btn-acao.editar {
+    background-color: #2563eb;
+}
+
+/* Botões secundários */
+.btn-acao.secundario {
+    background-color: #6b7280;
+}
+
+.btn-acao.secundario:hover {
+    background-color: #4b5563;
+}
+
+/*  DELETE*/
+.btn-acao.secundario_delete {
+    background-color: red;
+
+}
+.btn-acao.secundario_delete:hover {
+    background-color: red;
+}
+
+
+.page-header-logout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.alinha_header header {
+    display: flex;
+    align-items: center;          /* alinha verticalmente */
+    justify-content: space-between; /* h1 à esquerda, botão à direita */
+    padding: 10px 20px;
+}
+
+
+
+.logout .submit {
+    width: 180px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.card-form {
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.campo input,
+.campo textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.campo.leitura textarea {
+    min-height: 260px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Botões */
+.acoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.acoes button {
+    background: #4a90e2;
+    color: #fff;
+    padding: 12px 22px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.acoes button:hover {
+    background: #357abd;
+}
+
+.acoes .cancelar {
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    background: transparent;
+    color: #555;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.acoes .cancelar:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}

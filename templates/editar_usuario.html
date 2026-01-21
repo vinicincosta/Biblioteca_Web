@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="container-form">
+    <form class="card-form"
+          method="post"
+          action="{{ url_for('editar_usuario', id_usuario=usuario['id_usuario']) }}">
+
+        <h2>Editar Usuário</h2>
+
+        <div class="campo">
+            <label>Nome</label>
+            <input type="text" name="nome" value="{{ usuario['nome'] }}" required>
+        </div>
+
+        <div class="campo">
+            <label>Endereço</label>
+            <input type="text" name="endereco" value="{{ usuario['endereco'] }}" required>
+        </div>
+
+        <div class="campo">
+            <label>Papel</label>
+            <input type="text" name="papel" value="{{ usuario['papel'] }}" required>
+        </div>
+
+        <div class="campo">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ usuario['email'] }}" required>
+        </div>
+
+        <div class="campo">
+            <label>Status</label>
+            <select name="status_user" required>
+                <option value="Ativo" {% if usuario[
+                'status_user'] == 'Ativo' %}selected{% endif %}>
+                Ativo
+                </option>
+                <option value="Inativo" {% if usuario[
+                'status_user'] == 'Inativo' %}selected{% endif %}>
+                Inativo
+                </option>
+            </select>
+        </div>
+
+
+
+
+        <div class="acoes">
+            <button type="submit">Atualizar</button>
+            <a href="{{ url_for('usuarios') }}" class="cancelar">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

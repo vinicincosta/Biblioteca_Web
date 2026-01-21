@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="container-form">
+    <form class="card-form" action="{{ url_for('cadastrar_livro') }}" method="POST">
+
+        <h2>Cadastrar Livro</h2>
+
+        <div class="campo">
+            <label>Título</label>
+            <input type="text" name="titulo" required>
+        </div>
+
+        <div class="campo">
+            <label>Autor</label>
+            <input type="text" name="autor" required>
+        </div>
+
+        <div class="campo">
+            <label>ISBN</label>
+            <input type="text" name="ISBN" required>
+        </div>
+
+        <div class="campo">
+            <label>Resumo</label>
+            <input type="text" name="resumo" required>
+        </div>
+
+        <div class="campo leitura">
+            <label>Conteúdo do livro</label>
+            <textarea name="leitura" required placeholder="Digite aqui o conteúdo do livro..."></textarea>
+        </div>
+
+        <div class="acoes">
+            <button type="submit">Adicionar</button>
+            <a href="{{ url_for('livros') }}" class="cancelar">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

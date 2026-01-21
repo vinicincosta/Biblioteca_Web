@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h2 class="page-title">Usuários</h2><br>
+
+<div class="card-list">
+    {% for item in usuarios.lista_usuario %}
+
+
+    <p><strong>Nome:</strong> {{item.nome }}</p>
+    <p><strong>Email:</strong> {{item.email }}</p>
+    <p><strong>Papel:</strong> {{item.papel }}</p>
+    <p><strong>Endereço:</strong> {{item.endereco }}</p>
+    <p><strong>Cpf:</strong> {{item.cpf}}</p>
+    <p><strong>Status:</strong> {{ item.status_user }}</p>
+
+    <div class="acoes-livros">
+
+        <a class="btn-acao editar"
+           href="{{ url_for('editar_usuario', id_usuario=item.id_usuario) }}">
+            Editar usuário
+        </a>
+
+        <a class="btn-acao secundario"
+           href="{{ url_for('historico_de_emprestimos_por_usuario', id_usuario=item.id_usuario) }}">
+            Histórico
+        </a>
+
+
+    </div>
+
+
+    {% endfor %}
+</div>
+
+{% endblock %}

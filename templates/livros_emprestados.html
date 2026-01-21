@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h2 class="page-title">Livros Emprestados</h2>
+
+<div class="card-list">
+{% for item in livros_emprestados.livros_emprestados %}
+
+    <p><strong>Titulo:</strong>  {{item.titulo}}</p>
+    <p><strong>Autor: </strong> {{item.autor}} </p>
+    <p><strong>ISBN: </strong> {{item.ISBN}}</p>
+    <p><strong> Resumo:</strong> {{item.resumo}}</p>
+
+    <p><strong>Conteúdo: </strong> {{item.leitura}}</p>
+    <hr>
+
+
+{% endfor %}
+</div>
+{% endblock %}

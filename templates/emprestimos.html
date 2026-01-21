@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h2 class="page-title"> Empréstimos</h2>
+
+<div class="card-list">
+{% for item in emprestimos.lista_emprestimo %}
+
+    <p><strong>Livro emprestado:</strong> {{item.livro_emprestado_id}}</p>
+    <p><strong>Usuário:</strong> {{item.usuario_emprestado_id}}</p>
+    <p><strong>Data de empréstimos:</strong> {{item.data_de_emprestimo}}</p>
+    <p><strong>Data de Devoulução:</strong> {{item.data_de_devolucao}}</p>
+    <p><strong>Status do empréstimo: </strong> {{item.status}}<p>
+    <hr>
+
+{% endfor %}
+</div>
+{% endblock %}
