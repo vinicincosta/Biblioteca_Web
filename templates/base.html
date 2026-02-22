@@ -19,15 +19,16 @@
 <div class="alinha_header">
     <header>
         <h1>Biblioteca Digital</h1>
+        <a style="text-decoration:none" href ="{{ url_for('dados_grafico_livros_emp_html') }}">
+                <img src="{{ url_for('static', filename='dashboard.png') }}">
+                <span style="color:Black">Dashboard</span>
+            </a>
         <div class="logout">
             <a href="{{ url_for('logout') }}">
                 <button class="submit">SAIR</button>
             </a>
             <div class="icones-header">
-            <a href="{{ url_for('dados_grafico_livros_emp_html') }}" class="logout">
-                <img src="{{ url_for('static', filename='dashboard.png') }}">
-                <span>dashboard</span>
-            </a>
+
         </div>
         </div>
 

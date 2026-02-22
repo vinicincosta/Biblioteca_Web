@@ -8,8 +8,8 @@
 {% for item in emprestimos.lista_emprestimo %}
 
     <p><strong style="color:red">ID:</strong> {{item.id_emprestimo}}</p>
-    <p><strong>Livro emprestado:</strong> {{item.livro_emprestado_id}}</p>
-    <p><strong>Usuário:</strong> {{item.usuario_emprestado_id}}</p>
+    <p><strong>Livro emprestado:</strong> ID: {{item.livro_emprestado_id}} - Título: {{item.livro_titulo}}</p>
+    <p><strong>Usuário:</strong> ID: {{item.usuario_emprestado_id}} - Nome: {{ item.usuario_nome }}</p>
     <p><strong>Data de empréstimos:</strong> {{item.data_de_emprestimo}}</p>
     <p><strong>Data de Devoulução:</strong> {{item.data_de_devolucao}}</p>
     <p><strong>Status do empréstimo: </strong> {{item.status}}<p>

@@ -146,7 +146,7 @@ def historico_de_emprestimos_por_usuario(id_usuario):
     usuarios_emp = get_historico_de_emprestimos_por_usuario(id_usuario)
 
     if 'error' in usuarios_emp:
-        flash("Este usuário não realizou empréstimossss")
+        flash("Este usuário não realizou empréstimos")
         return redirect(url_for('usuarios'))
 
 
@@ -233,7 +233,8 @@ def editar_usuario(id_usuario):
 
             )
 
-            if resultado == 201:
+            # Talvez mudar depois o http 302 para 201, 302 significa redirecionamento temporário
+            if resultado == 302:
                 flash('Usuário editado com sucesso!', 'success')
             else:
                 flash('Erro ao editar usuário.', 'danger')
