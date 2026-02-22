@@ -1,6 +1,6 @@
 import requests
 
-url = "http://192.168.0.81:5000"
+url = "http://192.168.0.14:5000"
 
 
 
@@ -150,7 +150,7 @@ def put_editar_usuario(id_usuario, nome, papel, status_user, email, endereco, cp
 
 def put_editar_livro(id_livro, titulo, autor, ISBN, resumo, leitura):
     response = requests.put(
-        f"{url}/editar_livros/{id_livro}",
+        f"{url}/editar_livro/{id_livro}",
         json={
             "titulo": titulo,
             "autor": autor,
@@ -159,7 +159,9 @@ def put_editar_livro(id_livro, titulo, autor, ISBN, resumo, leitura):
             "leitura": leitura,
         }
     )
+
     return response.status_code
+
 
 
 # delete
@@ -172,3 +174,50 @@ def delete_livro(id_livro):
         return response.json()
     return None
 
+
+# Gráficos
+def get_livros_mais_emp():
+    base_url = f"{url}/grafico_livros_mais_emprestados"
+
+    response = requests.get(
+        base_url,
+
+    )
+
+    print("Status code:", response.status_code)
+    print("Response text:", response.text)
+
+    if response.status_code == 200:
+        try:
+            return response.json()
+        except Exception:
+            return {"erro": "Resposta inválida da API"}
+    else:
+        return {
+            "erro": response.status_code,
+            "mensagem": response.text
+        }
+
+
+
+def get_usuarios_que_mais_realizaram_emp():
+    base_url = f"{url}/usuarios_que_mais_realizaram_emp"
+
+    response = requests.get(
+        base_url,
+
+    )
+
+    print("Status code:", response.status_code)
+    print("Response text:", response.text)
+
+    if response.status_code == 200:
+        try:
+            return response.json()
+        except Exception:
+            return {"erro": "Resposta inválida da API"}
+    else:
+        return {
+            "erro": response.status_code,
+            "mensagem": response.text
+        }

@@ -2,18 +2,18 @@
 
 {% block main %}
 
-<h2 class="page-title">Usuários</h2><br>
-
+<h2 class="page-title">Usuários</h2>
 <div class="card-list">
     {% for item in usuarios.lista_usuario %}
 
-
+    <p><strong style="color:red">ID:</strong> {{item.id_usuario }}</p>
     <p><strong>Nome:</strong> {{item.nome }}</p>
     <p><strong>Email:</strong> {{item.email }}</p>
     <p><strong>Papel:</strong> {{item.papel }}</p>
     <p><strong>Endereço:</strong> {{item.endereco }}</p>
     <p><strong>Cpf:</strong> {{item.cpf}}</p>
     <p><strong>Status:</strong> {{ item.status_user }}</p>
+
 
     <div class="acoes-livros">
 
@@ -28,7 +28,9 @@
         </a>
 
 
+
     </div>
+    <hr>
 
 
     {% endfor %}

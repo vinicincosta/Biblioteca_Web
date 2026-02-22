@@ -1,6 +1,6 @@
 import token
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from werkzeug.routing import BuildError
 from functools import wraps
 import routes
@@ -184,8 +184,8 @@ def cadastrar_livro():
 
         resultado = post_livro(token,titulo, autor, ISBN, resumo, leitura)
 
-        if resultado == 201:
-            flash('Login bem-sucedido!', 'success')
+        if resultado == 200:
+            flash('Livro cadastrado com sucesso!', 'success')
             return redirect(url_for('livros'))
 
         else:
@@ -233,7 +233,7 @@ def editar_usuario(id_usuario):
 
             )
 
-            if resultado == 200:
+            if resultado == 201:
                 flash('Usuário editado com sucesso!', 'success')
             else:
                 flash('Erro ao editar usuário.', 'danger')
@@ -301,6 +301,33 @@ def deletar_livro(id_livro):
     return redirect(url_for('livros'))
 
 
+# Livros que mais foram emprestados
+@app.route("/dados_grafico_livros_emp")
+def dados_grafico_livros_emp():
+    if 'token' not in session:
+        return jsonify({"erro": "Sem login"}), 401
+
+    dados = routes.get_livros_mais_emp()
+
+    return jsonify(dados)
+
+
+@app.route("/dados_grafico_livros_emp_html")
+def dados_grafico_livros_emp_html():
+    return render_template("dashboard.html")
+
+
+
+# Usuários que mais realizaram empréstimos
+@app.route("/dados_usuarios_que_mais_realizaram_emp")
+def dados_usuarios_que_mais_realizaram_emp():
+    if 'token' not in session:
+        return jsonify({"erro": "Sem login"}), 401
+
+    dados = routes.get_usuarios_que_mais_realizaram_emp()
+    print(dados)
+
+    return jsonify(dados)
 
 
 

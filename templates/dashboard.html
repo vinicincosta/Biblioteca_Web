@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+<h1 style="text-align:center"> Dashboard</h1>
+
+<div class="card">
+    <h3>Livros Mais Emprestados</h3>
+    <div style="height:400px;">
+        <canvas id="graficoLivrosEmp"></canvas>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Usuários Que mais realizaram empréstimos</h3>
+    <div style="height:300px;">
+        <canvas id="graficoUsuarios"></canvas>
+    </div>
+</div>
+
+<!-- IMPORTANTE: carregar Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    carregarGraficoLivros();
+});
+
+async function carregarGraficoLivros() {
+    try {
+        const resposta = await fetch("/dados_grafico_livros_emp");
+        const dados = await resposta.json();
+
+        console.log("Dados recebidos:", dados);
+
+        if (!dados.livros || dados.livros.length === 0) {
+            console.warn("Nenhum dado encontrado.");
+            return;
+        }
+
+        const labels = dados.livros.map(l => l.titulo);
+        const totals = dados.livros.map(l => l.total);
+
+        const ctx = document.getElementById("graficoLivrosEmp");
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Quantidade de Empréstimos",
+                    data: totals,
+                    backgroundColor: "rgba(100,149,237,0.7)",
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: Math.max(...totals) + 1
+                    }
+                }
+            }
+        });
+
+    } catch (err) {
+        console.error("Erro no gráfico livros:", err);
+    }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    carregarGraficoUsuarios();
+});
+
+async function carregarGraficoUsuarios() {
+    try {
+        const resposta = await fetch("/dados_usuarios_que_mais_realizaram_emp");
+        const dados = await resposta.json();
+
+        console.log("Usuarios recebidos:", dados);
+
+        if (!dados.usuarios || dados.usuarios.length === 0) {
+            console.warn("Nenhum usuário encontrado.");
+            return;
+        }
+
+        const nomes = dados.usuarios.map(u => u.nome);
+        const totals = dados.usuarios.map(u => u.total);
+
+        const ctx = document.getElementById("graficoUsuarios");
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: nomes,
+                datasets: [{
+                    label: "Quantidade de Empréstimos",
+                    data: totals,
+                    backgroundColor: "rgba(255, 159, 64, 0.8)",
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // gráfico horizontal (melhor para nomes)
+                plugins: {
+                    legend: {
+                        labels: { color: "#fff" }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { color: "#ccc" }
+                    },
+                    y: {
+                        ticks: { color: "#ccc" }
+                    }
+                }
+            }
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar gráfico de usuários:", erro);
+    }
+}
+</script>
+
+{% endblock %}

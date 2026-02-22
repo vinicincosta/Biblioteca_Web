@@ -23,10 +23,17 @@
             <a href="{{ url_for('logout') }}">
                 <button class="submit">SAIR</button>
             </a>
+            <div class="icones-header">
+            <a href="{{ url_for('dados_grafico_livros_emp_html') }}" class="logout">
+                <img src="{{ url_for('static', filename='dashboard.png') }}">
+                <span>dashboard</span>
+            </a>
         </div>
+        </div>
+
+
     </header>
 </div>
-
 
 
 <div class="layout">
@@ -35,9 +42,9 @@
         <div class="container-nav">
             <div class="content-nav">
                 {% if session.get('papel') == 'admin' %}
-                    <a href="{{ url_for('usuarios') }}">USUÁRIOS</a>
-                    <a href="{{ url_for('livros') }}">LIVROS</a>
-                    <a href="{{ url_for('emprestimos') }}">EMPRÉSTIMOS</a>
+                <a href="{{ url_for('usuarios') }}">USUÁRIOS</a>
+                <a href="{{ url_for('livros') }}">LIVROS</a>
+                <a href="{{ url_for('emprestimos') }}">EMPRÉSTIMOS</a>
 
                 {% endif %}
             </div>
@@ -45,26 +52,24 @@
     </nav>
 
     <main class="container mt-4">
-    <div class="content-box">
+        <div class="content-box">
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <ul class="flashes">
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
+            <ul class="flashes">
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
             {% endif %}
-        {% endwith %}
+            {% endwith %}
 
-        {% block main %}{% endblock %}
+            {% block main %}{% endblock %}
 
-    </div>
-</main>
+        </div>
 
 
-</div>
-{% endif %}
+        {% endif %}
 
 </body>
 
