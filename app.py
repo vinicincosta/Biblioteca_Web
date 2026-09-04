@@ -57,9 +57,9 @@ def login():
                     flash('Bem-vindo administrador', 'success')
                     return redirect(url_for('usuarios'))
 
-                elif session['papel'] == 'usuario':
-                    flash('Bem-vindo cozinheiro', 'success')
-                    return redirect(url_for('usuarios'))
+                # elif session['papel'] == 'usuario':
+                #     flash('Bem-vindo cozinheiro', 'success')
+                #     return redirect(url_for('usuarios'))
 
                 else:
                     flash('Você não tem acesso a esse sistema', 'error')
@@ -167,7 +167,7 @@ def emprestimos():
 
     return render_template('emprestimos.html', emprestimos=emprestimos)
 
-@app.route('/livros/cadastrar_livro/', methods=['GET', 'POST'])
+@app.route('/livro/cadastrar_livro/', methods=['GET', 'POST'])
 @login_required
 def cadastrar_livro():
     if request.method == 'POST':
@@ -184,7 +184,8 @@ def cadastrar_livro():
 
         resultado = post_livro(token,titulo, autor, ISBN, resumo, leitura)
 
-        if resultado == 200:
+        # esse if busca o resultado da API. Se na API retornar 'success', aqui também retornará
+        if resultado.get('success'):
             flash('Livro cadastrado com sucesso!', 'success')
             return redirect(url_for('livros'))
 
@@ -197,7 +198,7 @@ def cadastrar_livro():
 
 
 
-@app.route('/editar_usuario/<int:id_usuario>', methods=['GET', 'POST'])
+@app.route('/editar_usuarios/<int:id_usuario>', methods=['GET', 'POST'])
 @login_required
 def editar_usuario(id_usuario):
     try:
@@ -216,11 +217,10 @@ def editar_usuario(id_usuario):
         elif request.method == 'POST':
             nome = request.form.get('nome')
             endereco = request.form.get('endereco')
+            papel = request.form.get('papel')
             email = request.form.get('email')
             status_user = request.form.get('status_user')
-            papel = request.form.get('papel')
             cpf = request.form.get('cpf')
-
 
             resultado = put_editar_usuario(
                 id_usuario,
@@ -230,12 +230,12 @@ def editar_usuario(id_usuario):
                 email,
                 endereco,
                 cpf
-
             )
 
-            # Talvez mudar depois o http 302 para 201, 302 significa redirecionamento temporário
-            if resultado == 302:
-                flash('Usuário editado com sucesso!', 'success')
+            print('RESULTADO DA API:', resultado)
+
+            if resultado.get('success'):
+                flash(resultado['success'], 'success')
             else:
                 flash('Erro ao editar usuário.', 'danger')
 

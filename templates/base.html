@@ -43,6 +43,7 @@
         <div class="container-nav">
             <div class="content-nav">
                 {% if session.get('papel') == 'admin' %}
+
                 <a href="{{ url_for('usuarios') }}">USUÁRIOS</a>
                 <a href="{{ url_for('livros') }}">LIVROS</a>
                 <a href="{{ url_for('emprestimos') }}">EMPRÉSTIMOS</a>

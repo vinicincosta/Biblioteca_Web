@@ -19,15 +19,29 @@
             <input type="text" name="endereco" value="{{ usuario['endereco'] }}" required>
         </div>
 
-        <div class="campo">
-            <label>Papel</label>
-            <input type="text" name="papel" value="{{ usuario['papel'] }}" required>
-        </div>
+    <div class="campo">
+        <label>Papel</label>
+        <select name="papel" required>
+            <option value="admin" {% if usuario['papel'] == 'admin' %}selected{% endif %}>
+                Administrador
+            </option>
+
+            <option value="usuarios" {% if usuario['papel'] == 'usuarios' %}selected{% endif %}>
+                Usuário
+            </option>
+        </select>
+    </div>
 
         <div class="campo">
             <label>Email</label>
             <input type="email" name="email" value="{{ usuario['email'] }}" required>
         </div>
+
+        <div class="campo">
+            <label>CPF</label>
+            <input type="text" name="cpf" value="{{ usuario['cpf'] }}" required>
+        </div>
+
 
         <div class="campo">
             <label>Status</label>

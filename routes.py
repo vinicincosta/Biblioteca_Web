@@ -1,6 +1,6 @@
 import requests
 
-url = "http://192.168.0.14:5000"
+url = "http://192.168.0.177:5000"
 
 
 
@@ -128,7 +128,7 @@ def post_livro(token_, titulo, autor, ISBN, resumo, leitura):
 # put
 
 def put_editar_usuario(id_usuario, nome, papel, status_user, email, endereco, cpf):
-    response = requests.put(f"{url}/editar_usuario/{id_usuario}",
+    response = requests.put(f"{url}/editar_usuarios/{id_usuario}",
     json={
         "nome":nome,
         "papel":papel,

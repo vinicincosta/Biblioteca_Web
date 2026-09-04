@@ -4,17 +4,18 @@
 <h2 class="page-title">Livros Emprestados</h2>
 
 <div class="card-list">
-{% for item in livros_emprestados.livros_emprestados %}
+    {% for item in livros_emprestados.livros_emprestados %}
 
-    <p><strong>Titulo:</strong>  {{item.titulo}}</p>
-    <p><strong>Autor: </strong> {{item.autor}} </p>
-    <p><strong>ISBN: </strong> {{item.ISBN}}</p>
-    <p><strong> Resumo:</strong> {{item.resumo}}</p>
+        <p><strong>Título:</strong> {{ item.livro_titulo }}</p>
+        <p><strong>Autor:</strong> {{ item.livro_autor }}</p>
+        <p><strong>ISBN:</strong> {{ item.livro_isbn }}</p>
+        <p><strong>Resumo:</strong> {{ item.livro_resumo }}</p>
+        <p><strong>Conteúdo:</strong> {{ item.livro_leitura }}</p>
 
-    <p><strong>Conteúdo: </strong> {{item.leitura}}</p>
-    <hr>
+        <p><strong  style="color:red">Usuário:</strong> {{ item.usuario_nome }}</p>
+        <p><strong  style="color:red">ID do Usuário:</strong> {{ item.usuario_emprestado_id }}</p>
+        <hr>
 
-
-{% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}
