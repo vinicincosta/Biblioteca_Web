@@ -1,6 +1,6 @@
 import requests
 
-url = "http://192.168.0.14:5000"
+url = "http://10.0.4.104:5000"
 
 
 
